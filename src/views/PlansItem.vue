@@ -2,7 +2,7 @@
 import Image from 'primevue/image';
 import {computed, ref} from 'vue';
 import {useRoute} from "vue-router";
-import {numberFormat} from "@/helpers/numberFormat";
+// import {numberFormat} from "@/helpers/numberFormat";
 import Filter from '../components/Filter.vue'
 
 const route = useRoute()
@@ -11,118 +11,67 @@ const typeApart = ref('')
 const countApart = ref(0)
 const floorApart = ref([])
 const asideApart = ref(false)
+const roteParams: any = ref(0)
 
+if (route?.params?.id) {
+  roteParams.value = route?.params?.id
+}
 
 const items = ref([
   {
     id: 11,
     parentId: 1,
-    title: '1-комнатная',
+    title: 'Квартира-студия',
     count: 1,
-    description: 'Континент 5',
+    description: 'Студия (тип 2)',
     price: 3855800,
-    image: 'flor.jpg',
+    image: '1c-tip2.png',
     type: 'Студия',
     floor: 11,
-    square: 40
+    square: 28
   },
   {
     id: 12,
     parentId: 1,
-    title: '2-комнатная',
-    count: 2,
-    description: 'Континент 5',
+    title: '1-комнатная',
+    count: 1,
+    description: '1-комнатная (тип 1)',
     price: 7043900,
-    image: 'sec.jpg',
+    image: '1ktip1.png',
     type: 'Квартира',
     floor: 7,
-    square: 72
+    square: 38
   },
   {
     id: 13,
     parentId: 1,
-    title: '3-комнатная',
-    count: 3,
-    description: 'Континент 5',
+    title: '2-комнатная',
+    count: 2,
+    description: '2-комнатная (тип 1)',
     price: 11112500,
-    image: 'th.jpg',
+    image: '2ktip1.png',
     type: 'Квартира',
     floor: 9,
-    square: 118
+    square: 62
   },
   {
-    id: 21,
-    parentId: 2,
-    title: '1-комнатная',
-    count: 1,
-    description: 'Континент 5',
-    price: 4855800,
-    image: 'f1.jpg',
-    type: 'Студия',
-    floor: 4,
-    square: 39
-  },
-  {
-    id: 22,
-    parentId: 2,
-    title: '2-комнатная',
-    count: 2,
-    description: 'Континент 5',
-    price: 9043900,
-    image: 'sc1.jpg',
-    type: 'Квартира',
-    floor: 1,
-    square: 76
-  },
-  {
-    id: 23,
-    parentId: 2,
+    id: 14,
+    parentId: 1,
     title: '3-комнатная',
     count: 3,
-    description: 'Континент 5',
-    price: 12112500,
-    image: 'th1.jpg',
+    description: '3-комнатная (тип 1)',
+    price: 11112500,
+    image: '3ktip1.png',
     type: 'Квартира',
-    floor: 2,
-    square: 123
-  },
-  {
-    id: 31,
-    parentId: 3,
-    title: '1-комнатная',
-    count: 1,
-    description: 'Континент 5',
-    price: 5855800,
-    image: 'f3.jpg',
-    type: 'Студия',
-    floor: 5,
-    square: 43
-  },
-  {
-    id: 32,
-    parentId: 3,
-    title: '2-комнатная',
-    count: 2,
-    description: 'Континент 5',
-    price: 8043900,
-    image: 'sc2.jpg',
-    type: 'Квартира',
-    floor: 3,
-    square: 86
-  },
-  {
-    id: 33,
-    parentId: 3,
-    title: '3-комнатная',
-    count: 3,
-    description: 'Континент 5',
-    price: 15112500,
-    image: 'th3.jpg',
-    type: 'Квартира',
-    floor: 14,
-    square: 139
-  },
+    floor: 9,
+    square: 74
+  }
 ])
+const clearFilter = () => {
+  typeApart.value = ''
+  countApart.value = 0
+  floorApart.value = []
+}
 const changeType = (type: string) => {
   typeApart.value = type
 }
@@ -137,7 +86,7 @@ const changeAside = (param: boolean) => {
   asideApart.value = param
 }
 const currentHouses = computed(() => {
-      return items.value.filter(el => el.parentId == route.params.id)
+      return items.value.filter(el => el.parentId == roteParams.value)
 })
 const currentHousesType = computed(() => {
       return currentHouses.value.filter(el => el.type == typeApart.value)
@@ -155,12 +104,11 @@ const currentHousesFloors = computed(() => {
     <section class="plans">
       <aside :class="{visible: asideApart}" class="aside">
         <button @click.prevent="asideApart = false" class="btn btn-close d-lg-none">
-
         </button>
-        <RouterLink class="home__logo" to="/"><img  src="/src/assets/images/logo.png" alt="logo"></RouterLink>
+        <RouterLink class="home__logo" to="/"><img  src="/assets/images/logoBlack.png" alt="logo"></RouterLink>
         <div class="aside__body">
           <RouterLink to="/" class="btn aside__btn">← Все объекты</RouterLink>
-          <ul class="aside__list list-group">
+          <ul class="aside__list list-group d-none">
             <li v-for="item in 3">
               <button class="btn">
                 <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,57 +120,57 @@ const currentHousesFloors = computed(() => {
               </button>
             </li>
           </ul>
-          <router-link to='/' class="btn aside__btn back-site">← На сайт</router-link>
+<!--          <router-link to='/' class="btn aside__btn back-site">← На сайт</router-link>-->
         </div>
         <div class="aside__footer text-center">
           <p class="text-black-50 mb-0">ОТДЕЛ ПРОДАЖ</p>
-          <a href="tel:+79999999999">+7(999)999-99-99</a>
+          <a href="tel:+7 4932 49-44-99">+7 4932 49-44-99</a>
           <span class="text-black-50 d-inline-block text-center"><a href="https://moovix.ru/" target="_blank">Сделано в Moovix</a></span>
         </div>
 
       </aside>
       <div class="plans__wrapper">
-        <Filter @change-type="changeType" @change-count="changeCount" @change-floors="changeFloors" @changeAside="changeAside"/>
+        <Filter @change-type="changeType" @change-count="changeCount" @change-floors="changeFloors" @changeAside="changeAside" @clear-filter="clearFilter"/>
         <div class="plans__list">
           <ul class="list-group">
 
             <li v-if="typeApart && !countApart" v-for="item in currentHousesType" :key="item.id">
-              <div class="card">
+              <div class="card p-2">
                 <Image :src="`./../assets/images/${item.image}`" alt="Image" preview/>
                 <div class="card-body">
                   <h5 class="card-title">{{ item.title }}</h5>
                   <p class="card-text">{{ item.description }}</p>
-                  <h6>{{ numberFormat(item.price) }}</h6>
+<!--                  <h6>{{ numberFormat(item.price) }}</h6>-->
                 </div>
               </div>
             </li>
             <li v-else-if="typeApart && countApart" v-for="item in currentHousesCount" :key="item.id">
-              <div class="card">
+              <div class="card p-2">
                 <Image :src="`./../assets/images/${item.image}`" alt="Image" preview/>
                 <div class="card-body">
                   <h5 class="card-title">{{ item.title }}</h5>
                   <p class="card-text">{{ item.description }}</p>
-                  <h6>{{ numberFormat(item.price) }}</h6>
+<!--                  <h6>{{ numberFormat(item.price) }}</h6>-->
                 </div>
               </div>
             </li>
             <li v-else-if="!typeApart && !countApart" v-for="item in currentHouses" :key="item.id">
-              <div class="card">
-                <Image :src="`./../assets/images/${item.image}`" alt="Image" preview/>
+              <div class="card p-2">
+                <Image class="mx-auto" :src="`./../assets/images/${item.image}`" alt="Image" preview/>
                 <div class="card-body">
                   <h5 class="card-title">{{ item.title }}</h5>
                   <p class="card-text">{{ item.description }}</p>
-                  <h6>{{ numberFormat(item.price) }}</h6>
+<!--                  <h6>{{ numberFormat(item.price) }}</h6>-->
                 </div>
               </div>
             </li>
             <li v-else v-for="item in currentHouses" :key="item.id">
-              <div class="card">
+              <div class="card p-2">
                 <Image :src="`./../assets/images/${item.image}`" alt="Image" preview/>
                 <div class="card-body">
                   <h5 class="card-title">{{ item.title }}</h5>
                   <p class="card-text">{{ item.description }}</p>
-                  <h6>{{ numberFormat(item.price) }}</h6>
+<!--                  <h6>{{ numberFormat(item.price) }}</h6>-->
                 </div>
               </div>
             </li>
@@ -236,3 +184,4 @@ const currentHousesFloors = computed(() => {
 <style scoped>
 
 </style>
+

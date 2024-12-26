@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import Slider from "primevue/slider";
 import {ref, watch} from "vue";
-const emit = defineEmits(['changeType', 'changeCount', 'changeFloors', 'changeAside'])
+const emit = defineEmits(['changeType', 'clearFilter', 'changeCount', 'changeFloors', 'changeAside'])
 
 const type = ref('')
 const count = ref(0)
 const visibleAside = ref(false)
 
+const clearFilter = () => {
+  type.value = ''
+  count.value = 0
+  emit('clearFilter')
+}
 
 const valueFloor = ref([1, 14]);
-const valueArea = ref([26, 140]);
+const valueArea = ref([28, 74]);
 
 watch(() => type.value, () => {
   emit('changeType', type.value)
@@ -61,9 +66,11 @@ watch(() => valueFloor.value, () => {
         <button class="btn btn-secondary btn-sm" disabled>{{valueArea[1]}}</button>
       </div>
       <div class="card flex justify-center">
-        <Slider v-model="valueArea" :min="26" :max="140" range />
+        <Slider v-model="valueArea" :min="28" :max="74" range />
       </div>
     </div>
+    <button @click.prevent="clearFilter" class="btn btn-sm btn-dark align-self-end">Сбросить</button>
+
 
   </div>
 
