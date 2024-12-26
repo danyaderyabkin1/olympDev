@@ -1,0 +1,163 @@
+@use "plans";
+body, #app, main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+img {
+  max-width: 100%;
+}
+ul, li {
+  list-style: none;
+}
+ul {
+  padding-left: 0;
+}
+.plans {
+  .p-slider-handle, .p-slider-handle::before {
+    width: 12px;
+    height: 12px;
+  }
+}
+.plans {
+  .p-slider:not(.p-disabled) .p-slider-handle:hover, .p-slider-handle:focus-visible, .p-slider:not(.p-disabled) .p-slider-handle:focus:hover {
+    box-shadow: 0 0 1px 5px color-mix(in srgb,#3BBFA1,transparent 92%);
+  }
+}
+
+
+
+.home {
+  display: flex;
+  flex: 1 0 auto;
+  position: relative;
+
+  @media (max-width: 992px) {
+   flex-direction: column-reverse;
+  }
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    max-width: 900px;
+    min-width: 900px;
+    width: 100%;
+    padding: 20px;
+    max-height: 100vh;
+    overflow: auto;
+
+    @media (max-width: 1400px) {
+      max-width: 700px;
+      min-width: 700px;
+    }
+    @media (max-width: 1200px) {
+      max-width: 500px;
+      min-width: 500px;
+    }
+    @media (max-width: 992px) {
+      max-width: none;
+      min-width: auto;
+    }
+
+    &::-webkit-scrollbar {
+      width: 3px; /* Ширина всего элемента навигации */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #fff; /* Цвет дорожки */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #c3c3c3; /* Цвет бегунка */
+      border-radius: 20px; /* Округление бегунка */
+      border: 3px solid #c3c3c3; /* Оформление границ бегунка */
+    }
+
+  }
+  &__right {
+    position: absolute;
+    left: 900px;
+    right: 0;
+    height: 100%;
+
+    @media (max-width: 1400px) {
+      left: 700px;
+    }
+    @media (max-width: 1200px) {
+      left: 500px;
+    }
+    @media (max-width: 992px) {
+      position: relative;
+      left: unset;
+      height: 300px;
+    }
+
+
+  }
+
+  &__logo {
+    width: 200px;
+    align-self: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    li {
+      display: flex;
+      gap: 25px ;
+      @media (max-width: 1400px) {
+      align-items: flex-start;
+        flex-direction: column;
+
+      }
+      @media (max-width: 1200px) {
+      }
+      h3 {
+        font-size: 20px;
+      }
+      img {
+        max-width: 420px;
+        border-radius: 5px;
+        height: 100%;
+        object-fit: cover;
+        @media (max-width: 1200px) {
+          max-width: 300px;
+        }
+
+      }
+    }
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      h3 {
+        a  {
+          text-decoration: none;
+        }
+      }
+      .btn {
+        color: white;
+      }
+      a {
+        display: block;
+        color: black;
+        text-underline-offset: 3px;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 10px;
+      }
+      .link-small {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
