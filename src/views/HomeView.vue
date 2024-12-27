@@ -24,8 +24,8 @@ const backSite = () => {
   <main>
     <section class="home">
       <div class="home__left">
-        <button @click.preve="backSite" class="btn btn-light rounded-5">← Назад на сайт</button>
-        <RouterLink class="home__logo" to="/"><img  src="/assets/images/logoBlack.png" alt="logo"></RouterLink>
+        <button @click.prevent="backSite" class="btn btn-light rounded-5">← Назад на сайт</button>
+        <RouterLink @click.prevent="backSite" class="home__logo" to="/"><img  src="/assets/images/logoBlack.png" alt="logo"></RouterLink>
         <ul class="home__list list-group">
           <ListItem v-for="item in items" :key="item.id" :item="item"/>
         </ul>

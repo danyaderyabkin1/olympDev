@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import Slider from "primevue/slider";
 import {ref, watch} from "vue";
-const emit = defineEmits(['changeType', 'clearFilter', 'changeCount', 'changeFloors', 'changeAside'])
+const emit = defineEmits(['changeType', 'clearFilter', 'changeCount', 'changeFloors', 'changeAside', 'changeEntrance', 'changeSquare'])
 
 const type = ref('')
 const count = ref(0)
+const entrance = ref(0)
 const visibleAside = ref(false)
 
 const clearFilter = () => {
   type.value = ''
   count.value = 0
+  entrance.value = 0
+  valueArea.value = [28, 74]
+  valueFloor.value = [1, 14]
   emit('clearFilter')
 }
 
@@ -25,6 +29,12 @@ watch(() => count.value, () => {
 watch(() => valueFloor.value, () => {
   emit('changeFloors', valueFloor.value)
 })
+watch(() => entrance.value, () => {
+  emit('changeEntrance', entrance.value)
+})
+watch(() => valueArea.value, () => {
+  emit('changeSquare', valueArea.value)
+})
 </script>
 
 <template>
@@ -34,6 +44,14 @@ watch(() => valueFloor.value, () => {
         <path d="M5.83334 17.5H29.1667M5.83334 11.6667H29.1667M5.83334 23.3334H17.5" stroke="black" stroke-width="2.91667" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
+    <div class="plans__filter-block">
+      <span>подъезд</span>
+      <div class="d-flex gap-2">
+        <button @click.prevent="entrance = 1" :class="{active: entrance === 1}" class="btn btn-outline-secondary">1</button>
+        <button @click.prevent="entrance = 2" :class="{active: entrance === 2}" class="btn btn-outline-secondary">2</button>
+        <button @click.prevent="entrance = 3" :class="{active: entrance === 3}" class="btn btn-outline-secondary">3</button>
+      </div>
+    </div>
     <div class="plans__filter-block">
       <span>Тип</span>
       <div class="d-flex gap-2">

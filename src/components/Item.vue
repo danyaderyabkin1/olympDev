@@ -15,8 +15,8 @@ const props = defineProps({
     <div class="home__list-wrap">
       <h3><RouterLink :to="`/plans/${item?.id}`">{{item?.title}}</RouterLink></h3>
       <p v-html="item?.description"></p>
-      <div><strong>от {{numberFormat(item?.price)}}</strong> <strong>•</strong><RouterLink :to="`/plans/${item?.id}`">{{item?.apart}} квартир</RouterLink></div>
-      <RouterLink class="link-small" :to="`/plans/${item?.id}`">{{item?.pantry}} этажей</RouterLink>
+      <div><strong>{{item?.pantry}} этажей</strong> <strong>•</strong><RouterLink :to="`/plans/${item?.id}`">{{item?.apart}} квартир</RouterLink></div>
+<!--      <RouterLink class="link-small" :to="`/plans/${item?.id}`">{{item?.pantry}} этажей</RouterLink>-->
       <RouterLink :to="`/plans/${item?.id}`" class="btn btn-primary">Открыть каталог</RouterLink>
     </div>
   </li>

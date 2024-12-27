@@ -9,7 +9,9 @@ const route = useRoute()
 
 const typeApart = ref('')
 const countApart = ref(0)
+const entranceApart = ref(0)
 const floorApart = ref([])
+const squareApart = ref([])
 const asideApart = ref(false)
 const roteParams: any = ref(0)
 
@@ -19,6 +21,19 @@ if (route?.params?.id) {
 
 const items = ref([
   {
+    id: 21,
+    parentId: 1,
+    title: 'Квартира-студия',
+    count: 1,
+    description: 'Студия (тип 1)',
+    price: 3855800,
+    image: '1c-tip1.png',
+    type: 'Студия',
+    floor: 4,
+    square: 28,
+    entrance: 2
+  },
+  {
     id: 11,
     parentId: 1,
     title: 'Квартира-студия',
@@ -27,8 +42,74 @@ const items = ref([
     price: 3855800,
     image: '1c-tip2.png',
     type: 'Студия',
-    floor: 11,
-    square: 28
+    floor: 13,
+    square: 28,
+    entrance: 1
+  },
+  {
+    id: 31,
+    parentId: 1,
+    title: 'Квартира-студия',
+    count: 1,
+    description: 'Студия (тип 3)',
+    price: 3855800,
+    image: '1c-tip3.png',
+    type: 'Студия',
+    floor: 3,
+    square: 28,
+    entrance: 2
+  },
+  {
+    id: 32,
+    parentId: 1,
+    title: 'Квартира-студия',
+    count: 1,
+    description: 'Студия (тип 4)',
+    price: 3855800,
+    image: '1c-tip4.png',
+    type: 'Студия',
+    floor: 10,
+    square: 28,
+    entrance: 3
+  },
+  {
+    id: 33,
+    parentId: 1,
+    title: 'Квартира-студия',
+    count: 1,
+    description: 'Студия (тип 5)',
+    price: 3855800,
+    image: '1c-tip5.png',
+    type: 'Студия',
+    floor: 7,
+    square: 28,
+    entrance: 2
+  },
+  {
+    id: 34,
+    parentId: 1,
+    title: 'Квартира-студия',
+    count: 1,
+    description: 'Студия (тип 6)',
+    price: 3855800,
+    image: '1c-tip6.png',
+    type: 'Студия',
+    floor: 2,
+    square: 28,
+    entrance: 1
+  },
+  {
+    id: 35,
+    parentId: 1,
+    title: 'Квартира-студия',
+    count: 1,
+    description: 'Студия (тип 7)',
+    price: 3855800,
+    image: '1c-tip7.png',
+    type: 'Студия',
+    floor: 6,
+    square: 30,
+    entrance: 2
   },
   {
     id: 12,
@@ -40,7 +121,73 @@ const items = ref([
     image: '1ktip1.png',
     type: 'Квартира',
     floor: 7,
-    square: 38
+    square: 44,
+    entrance: 1
+  },
+  {
+    id: 23,
+    parentId: 1,
+    title: '1-комнатная',
+    count: 1,
+    description: '1-комнатная (тип 2)',
+    price: 7043900,
+    image: '1k-tip2.png',
+    type: 'Квартира',
+    floor: 13,
+    square: 42,
+    entrance: 2
+  },
+  {
+    id: 24,
+    parentId: 1,
+    title: '1-комнатная',
+    count: 1,
+    description: '1-комнатная (тип 3)',
+    price: 7043900,
+    image: '1k-tip3.png',
+    type: 'Квартира',
+    floor: 13,
+    square: 48,
+    entrance: 3
+  },
+  {
+    id: 25,
+    parentId: 1,
+    title: '1-комнатная',
+    count: 1,
+    description: '1-комнатная (тип 4)',
+    price: 7043900,
+    image: '1ktip4.png',
+    type: 'Квартира',
+    floor: 2,
+    square: 41,
+    entrance: 3
+  },
+  {
+    id: 26,
+    parentId: 1,
+    title: '1-комнатная',
+    count: 1,
+    description: '1-комнатная (тип 5)',
+    price: 7043900,
+    image: '1ktip5.png',
+    type: 'Квартира',
+    floor: 2,
+    square: 43,
+    entrance: 1
+  },
+  {
+    id: 27,
+    parentId: 1,
+    title: '1-комнатная',
+    count: 1,
+    description: '1-комнатная (тип 6)',
+    price: 7043900,
+    image: '1ktip6.png',
+    type: 'Квартира',
+    floor: 2,
+    square: 47,
+    entrance: 2
   },
   {
     id: 13,
@@ -51,8 +198,48 @@ const items = ref([
     price: 11112500,
     image: '2ktip1.png',
     type: 'Квартира',
-    floor: 9,
-    square: 62
+    floor: 3,
+    square: 62,
+    entrance: 2
+  },
+  {
+    id: 17,
+    parentId: 1,
+    title: '2-комнатная',
+    count: 2,
+    description: '2-комнатная (тип 2)',
+    price: 11112500,
+    image: '2ktip2.png',
+    type: 'Квартира',
+    floor: 8,
+    square: 55,
+    entrance: 1
+  },
+  {
+    id: 18,
+    parentId: 1,
+    title: '2-комнатная',
+    count: 2,
+    description: '2-комнатная (тип 3)',
+    price: 11112500,
+    image: '2ktip3.png',
+    type: 'Квартира',
+    floor: 1,
+    square: 65,
+    entrance: 3
+  },
+  {
+    id: 19,
+    parentId: 1,
+    title: '2-комнатная',
+    count: 2,
+    description: '2-комнатная (тип 4)',
+    price: 11112500,
+    image: '2ktip4.png',
+    type: 'Квартира',
+    floor: 11,
+    square: 50,
+    entrance: 2
   },
   {
     id: 14,
@@ -64,13 +251,42 @@ const items = ref([
     image: '3ktip1.png',
     type: 'Квартира',
     floor: 9,
-    square: 74
+    square: 74,
+    entrance: 3
+  },
+  {
+    id: 15,
+    parentId: 1,
+    title: '3-комнатная',
+    count: 3,
+    description: '3-комнатная (тип 2)',
+    price: 11112500,
+    image: '3k-tip2.png',
+    type: 'Квартира',
+    floor: 2,
+    square: 68,
+    entrance: 1
+  },
+  {
+    id: 16,
+    parentId: 1,
+    title: '3-комнатная',
+    count: 3,
+    description: '3-комнатная (тип 3)',
+    price: 11112500,
+    image: '3ktip3.png',
+    type: 'Квартира',
+    floor: 2,
+    square: 70,
+    entrance: 2
   }
 ])
 const clearFilter = () => {
   typeApart.value = ''
   countApart.value = 0
+  entranceApart.value = 0
   floorApart.value = []
+  squareApart.value = []
 }
 const changeType = (type: string) => {
   typeApart.value = type
@@ -78,24 +294,32 @@ const changeType = (type: string) => {
 const changeCount = (count: number) => {
   countApart.value = count
 }
+const changeEntrance = (entrance: number) => {
+  entranceApart.value = entrance
+}
+
 const changeFloors = (floor: any) => {
   floorApart.value = floor
 }
+const changeSquare = (square: any) => {
+  squareApart.value = square
+}
 const changeAside = (param: boolean) => {
-  console.log(param)
   asideApart.value = param
 }
+
+const backSite = () => {
+  location.href = 'https://xn--37-6kch4bxauj2f.xn--p1ai/'
+}
 const currentHouses = computed(() => {
-      return items.value.filter(el => el.parentId == roteParams.value)
-})
-const currentHousesType = computed(() => {
-      return currentHouses.value.filter(el => el.type == typeApart.value)
-})
-const currentHousesCount = computed(() => {
-  return currentHouses.value.filter(el => el.count == countApart.value && el.type == typeApart.value)
-})
-const currentHousesFloors = computed(() => {
-  return currentHouses.value.filter(el => el.floor >= floorApart.value[0] && el.floor <= floorApart.value[1] && el.type == typeApart.value && el.count == countApart.value)
+      return items.value.filter(item => {
+        const matchesType = typeApart.value ? item.type == typeApart.value : true;
+        const matchesRooms = countApart.value ? item.count === Number(countApart.value) : true;
+        const matchesEntrance = entranceApart.value ? item.entrance === Number(entranceApart.value) : true;
+        const matchesFloors = floorApart.value.length ? item.floor >= floorApart.value[0] && item.floor <= floorApart.value[1] : true;
+        const matchesSquare = squareApart.value.length ? item.square >= squareApart.value[0] && item.square <= squareApart.value[1] : true;
+        return matchesType && matchesRooms && matchesEntrance && matchesFloors && matchesSquare
+      })
 })
 </script>
 
@@ -105,7 +329,7 @@ const currentHousesFloors = computed(() => {
       <aside :class="{visible: asideApart}" class="aside">
         <button @click.prevent="asideApart = false" class="btn btn-close d-lg-none">
         </button>
-        <RouterLink class="home__logo" to="/"><img  src="/assets/images/logoBlack.png" alt="logo"></RouterLink>
+        <RouterLink @click.prevent="backSite" class="home__logo align-self-center" to="/"><img  src="/assets/images/logoBlack.png" alt="logo"></RouterLink>
         <div class="aside__body">
           <RouterLink to="/" class="btn aside__btn">← Все объекты</RouterLink>
           <ul class="aside__list list-group d-none">
@@ -130,43 +354,13 @@ const currentHousesFloors = computed(() => {
 
       </aside>
       <div class="plans__wrapper">
-        <Filter @change-type="changeType" @change-count="changeCount" @change-floors="changeFloors" @changeAside="changeAside" @clear-filter="clearFilter"/>
+        <Filter @change-type="changeType" @change-square="changeSquare" @change-count="changeCount" @change-entrance="changeEntrance" @change-floors="changeFloors" @changeAside="changeAside" @clear-filter="clearFilter"/>
         <div class="plans__list">
           <ul class="list-group">
 
-            <li v-if="typeApart && !countApart" v-for="item in currentHousesType" :key="item.id">
-              <div class="card p-2">
-                <Image :src="`./../assets/images/${item.image}`" alt="Image" preview/>
-                <div class="card-body">
-                  <h5 class="card-title">{{ item.title }}</h5>
-                  <p class="card-text">{{ item.description }}</p>
-<!--                  <h6>{{ numberFormat(item.price) }}</h6>-->
-                </div>
-              </div>
-            </li>
-            <li v-else-if="typeApart && countApart" v-for="item in currentHousesCount" :key="item.id">
-              <div class="card p-2">
-                <Image :src="`./../assets/images/${item.image}`" alt="Image" preview/>
-                <div class="card-body">
-                  <h5 class="card-title">{{ item.title }}</h5>
-                  <p class="card-text">{{ item.description }}</p>
-<!--                  <h6>{{ numberFormat(item.price) }}</h6>-->
-                </div>
-              </div>
-            </li>
-            <li v-else-if="!typeApart && !countApart" v-for="item in currentHouses" :key="item.id">
-              <div class="card p-2">
+            <li  v-for="item in currentHouses" :key="item.id">
+              <div class="card p-0 p-md-2">
                 <Image class="mx-auto" :src="`./../assets/images/${item.image}`" alt="Image" preview/>
-                <div class="card-body">
-                  <h5 class="card-title">{{ item.title }}</h5>
-                  <p class="card-text">{{ item.description }}</p>
-<!--                  <h6>{{ numberFormat(item.price) }}</h6>-->
-                </div>
-              </div>
-            </li>
-            <li v-else v-for="item in currentHouses" :key="item.id">
-              <div class="card p-2">
-                <Image :src="`./../assets/images/${item.image}`" alt="Image" preview/>
                 <div class="card-body">
                   <h5 class="card-title">{{ item.title }}</h5>
                   <p class="card-text">{{ item.description }}</p>

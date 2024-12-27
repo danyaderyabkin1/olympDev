@@ -95,10 +95,38 @@
     }
   }
 
+  .card {
+    img {
+      height: 350px;
+      object-fit: contain;
+      @media (max-width: 480px) {
+        height: 200px;
+      }
+    }
+    .card-body {
+      @media (max-width: 480px) {
+        padding: 5px;
+      }
+      .card-title {
+        @media (max-width: 480px) {
+          font-size: 17px;
+        }
+      }
+      .card-text {
+        @media (max-width: 480px) {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
   &__filter {
     display: flex;
     padding: 10px 30px;
     gap: 25px;
+    @media (max-width: 1200px) {
+      flex-wrap: wrap;
+    }
 
     @media (max-width: 480px) {
       flex-direction: column;
